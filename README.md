@@ -84,6 +84,22 @@ master:
 
 Note that if one of the commands fails, the execution will stop.
 
+## Command line arguments
+
+You can pass arguments to the commands by just including them after `ubolt alias`. Inside your `.ubolt.yaml` file just put `$1`, `$2`, etc. to have the arguments replaced. These
+arguments always start with `$1`. For example here would be how you specify the argument in your `.ubolt.yaml`:
+
+```
+files:
+    command: ls $1
+```
+
+And to pass it when executing:
+
+```
+ubolt files -la
+```
+
 ## Naming
 
 I wanted to make a very fast alias command executor, so why not name it after the worlds fastest man?

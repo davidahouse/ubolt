@@ -15,13 +15,13 @@ const command = process.argv.length > 2 ? commands[process.argv[2]] : null;
 if (command != null) {
   if (command.command != null) {
     try {
-      execSync(command.command, { stdio: 'inherit' });
+      execSync(replaceArguments(command.command), { stdio: 'inherit' });
     } catch (e) {
       console.log('Error: ' + e);
     }
   } else if (command.commands != null) {
     for (let index = 0; index < command.commands.length; index++) {
-      const singleCommand = command.commands[index];
+      const singleCommand = replaceArguments(command.commands[index]);
       try {
         execSync(singleCommand, { stdio: 'inherit' });
       } catch (e) {
@@ -66,4 +66,19 @@ function userCommands() {
   } else {
     return {};
   }
+}
+
+/**
+ * replaceArguments
+ * @param {string} the command line
+ * @return {string} the new command line with arguments replaced
+ */
+function replaceArguments(command) {
+  let original = command;
+  let position = 1;
+  for (let index = 3; index < process.argv.length; index++) {
+    original = original.replace('$' + position.toString(), process.argv[index]);
+    position += 1;
+  }
+  return original;
 }
