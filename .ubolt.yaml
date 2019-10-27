@@ -4,6 +4,11 @@ lint:
 lint-fix:
   command: npm run lint-fix
   description: Run lint, but fix any findings
+arguments:
+  commands:
+    - ls $1
+    - ps $2
+  description: Do a test with argument replacement
 multi:
   commands:
     - sleep 1
