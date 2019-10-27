@@ -70,6 +70,20 @@ u ubolt-info
 
 If you just type in `ubolt`, or give it an alias not found, it will display all the user & local aliases it can find, based on your current directory.
 
+## Multiple commands
+
+If you want an alias to execute multiple commands, just use `commands:` instead of `command:` in your yaml. For example:
+
+```
+master:
+    commands:
+        - git checkout master
+        - git pull
+    description: Return to master and pull latest
+```
+
+Note that if one of the commands fails, the execution will stop.
+
 ## Naming
 
 I wanted to make a very fast alias command executor, so why not name it after the worlds fastest man?

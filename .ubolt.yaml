@@ -4,3 +4,8 @@ lint:
 lint-fix:
   command: npm run lint-fix
   description: Run lint, but fix any findings
+multi:
+  commands:
+    - sleep 1
+    - ls -la
+  description: Do a test with multiple commands
