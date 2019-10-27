@@ -26,6 +26,7 @@ if (command != null) {
         execSync(singleCommand, { stdio: 'inherit' });
       } catch (e) {
         console.log('Error: ' + e);
+        break;
       }
     }
   }
