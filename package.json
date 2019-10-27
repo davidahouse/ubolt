@@ -1,0 +1,29 @@
+{
+  "name": "ubolt",
+  "main": "bin/ubolt.js",
+  "version": "0.1.0",
+  "description": "A command line app for managing command line aliases per directory",
+  "license": "MIT",
+  "repository": "davidahouse/ubolt",
+  "preferGlobal": true,
+  "bin": {
+    "ubolt": "bin/ubolt.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "figlet": "^1.2.1",
+    "js-yaml": "^3.13.1",
+    "pkginfo": "^0.4.1",
+    "rc": "^1.2.8"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.5.0"
+  },
+  "scripts": {
+    "lint": "eslint $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")",
+    "lint-fix": "eslint --fix $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")"
+  }
+}

@@ -1,0 +1,6 @@
+lint:
+  command: npm run lint
+  description: Run lint
+lint-fix:
+  command: npm run lint-fix
+  description: Run lint, but fix any findings
