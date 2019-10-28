@@ -1,7 +1,7 @@
 {
   "name": "ubolt",
   "main": "bin/ubolt.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A command line app for managing command line aliases per directory",
   "license": "MIT",
   "repository": "davidahouse/ubolt",
