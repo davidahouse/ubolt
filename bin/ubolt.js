@@ -15,7 +15,9 @@ const command = process.argv.length > 2 ? commands[process.argv[2]] : null;
 if (command != null) {
   if (command.command != null) {
     try {
-      execSync(replaceArguments(command.command), { stdio: 'inherit' });
+      const commandToExecute = replaceArguments(command.command);
+      console.log(chalk.green(commandToExecute));
+      execSync(commandToExecute, { stdio: 'inherit' });
     } catch (e) {
       console.log('Error: ' + e);
     }
@@ -23,6 +25,7 @@ if (command != null) {
     for (let index = 0; index < command.commands.length; index++) {
       const singleCommand = replaceArguments(command.commands[index]);
       try {
+        console.log(chalk.green(singleCommand));
         execSync(singleCommand, { stdio: 'inherit' });
       } catch (e) {
         console.log('Error: ' + e);
