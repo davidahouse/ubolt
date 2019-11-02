@@ -19,7 +19,8 @@ if (command != null) {
       console.log(chalk.green(commandToExecute));
       execSync(commandToExecute, { stdio: 'inherit' });
     } catch (e) {
-      console.log('Error: ' + e);
+      console.log(chalk.red(e));
+      process.exit(e.status != null ? e.status : 1);
     }
   } else if (command.commands != null) {
     for (let index = 0; index < command.commands.length; index++) {
@@ -28,8 +29,8 @@ if (command != null) {
         console.log(chalk.green(singleCommand));
         execSync(singleCommand, { stdio: 'inherit' });
       } catch (e) {
-        console.log('Error: ' + e);
-        break;
+        console.log(chalk.red(e));
+        process.exit(e.status != null ? e.status : 1);
       }
     }
   }
@@ -43,6 +44,7 @@ if (command != null) {
   Object.keys(local).forEach(function(cmd) {
     console.log(chalk.green(cmd) + ' ' + commands[cmd].description);
   });
+  process.exit(1);
 }
 
 /**
@@ -79,13 +81,11 @@ function userCommands() {
 function replaceArguments(command) {
   let original = command;
   let position = 1;
-  console.log('original: ' + original);
   for (let index = 3; index < process.argv.length; index++) {
     original = original
       .split('$' + position.toString())
       .join(process.argv[index]);
     position += 1;
   }
-  console.log('original: ' + original);
   return original;
 }

@@ -15,6 +15,11 @@ multi:
     - sleep 1
     - ls -la
   description: Do a test with multiple commands
+error:
+  commands:
+    - thisShouldError
+    - ls -la
+  description: Test that an error in one command will stop commands
 newversion:
   commands:
     - npm --no-git-tag-version version $1
