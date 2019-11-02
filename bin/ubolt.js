@@ -79,9 +79,13 @@ function userCommands() {
 function replaceArguments(command) {
   let original = command;
   let position = 1;
+  console.log('original: ' + original);
   for (let index = 3; index < process.argv.length; index++) {
-    original = original.replace('$' + position.toString(), process.argv[index]);
+    original = original
+      .split('$' + position.toString())
+      .join(process.argv[index]);
     position += 1;
   }
+  console.log('original: ' + original);
   return original;
 }
