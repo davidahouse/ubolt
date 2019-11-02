@@ -8,9 +8,18 @@ arguments:
   commands:
     - ls $1
     - ps $2
+    - echo $1 $1
   description: Do a test with argument replacement
 multi:
   commands:
     - sleep 1
     - ls -la
   description: Do a test with multiple commands
+newversion:
+  commands:
+    - npm --no-git-tag-version version $1
+    - npm install
+  description: Update the package.json with a new version
+version:
+  command: npm view lynn-cli version
+  description: Show the current version of the package
