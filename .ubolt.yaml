@@ -26,5 +26,5 @@ newversion:
     - npm install
   description: Update the package.json with a new version
 version:
-  command: npm view lynn-cli version
+  command: npm view ubolt version
   description: Show the current version of the package
