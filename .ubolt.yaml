@@ -28,3 +28,8 @@ newversion:
 version:
   command: npm view ubolt version
   description: Show the current version of the package
+gitbranch:
+  command: echo "$GITBRANCH"
+  description: Show the current git branch
+  options:
+    usesGitBranch: true
