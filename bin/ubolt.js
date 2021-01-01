@@ -109,9 +109,13 @@ async function replaceArguments(command, options) {
     options.usesGitBranch != null &&
     options.usesGitBranch == true
   ) {
-    const result = await git().status();
-    const branch = result.current;
-    original = original.split("$GITBRANCH").join(branch);
+    try {
+      const result = await git().status();
+      const branch = result.current;
+      original = original.split("$GITBRANCH").join(branch);
+    } catch (e) {
+      // DO nothing, probably not a git repo directory
+    }
   }
 
   return original;
