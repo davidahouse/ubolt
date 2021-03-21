@@ -10,6 +10,8 @@ arguments:
     - ps $2
     - echo $1 $1
   description: Do a test with argument replacement
+  options:
+    numberOfParams: 2
 multi:
   commands:
     - sleep 1
