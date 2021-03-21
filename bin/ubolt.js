@@ -38,6 +38,9 @@ async function executeCommand() {
       command.command,
       command.options
     );
+    if (commandToExecute == null) {
+      process.exit(1);
+    }
     console.log(chalk.green(commandToExecute));
     execSync(commandToExecute, { stdio: "inherit" });
   } catch (e) {
@@ -52,6 +55,10 @@ async function executeCommands() {
       command.commands[index],
       command.options
     );
+    if (singleCommand == null) {
+      process.exit(1);
+    }
+
     try {
       console.log(chalk.green(singleCommand));
       execSync(singleCommand, { stdio: "inherit" });
@@ -95,6 +102,17 @@ function userCommands() {
  * @return {string} the new command line with arguments replaced
  */
 async function replaceArguments(command, options) {
+  if (
+    options != null &&
+    options.numberOfParams != null &&
+    options.numberOfParams != process.argv.length - 3
+  ) {
+    console.log(
+      chalk.red("Number of parameters supplied does not match expected amount")
+    );
+    return null;
+  }
+
   let original = command;
   let position = 1;
   for (let index = 3; index < process.argv.length; index++) {
