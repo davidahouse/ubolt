@@ -74,12 +74,21 @@ async function executeCommands() {
  * @return {object} list of local commands
  */
 function localCommands() {
+  loaded = {};
   if (fs.existsSync(".ubolt.yaml")) {
     const localUBolt = fs.readFileSync(".ubolt.yaml");
-    return yaml.safeLoad(localUBolt);
-  } else {
-    return {};
+    loaded = yaml.safeLoad(localUBolt);
   }
+  if (fs.existsSync(homedir + "/.ubolt.yaml")) {
+    const userUBolt = fs.readFileSync(homedir + "/.ubolt.yaml");
+    userloaded = yaml.safeLoad(userUBolt);
+    Object.keys(userloaded).forEach(function (cmd) {
+      if (userloaded[cmd].folder === process.cwd()) {
+        loaded[cmd] = userloaded[cmd];
+      }
+    });
+  }
+  return loaded;
 }
 
 /**
@@ -89,7 +98,14 @@ function localCommands() {
 function userCommands() {
   if (fs.existsSync(homedir + "/.ubolt.yaml")) {
     const userUBolt = fs.readFileSync(homedir + "/.ubolt.yaml");
-    return yaml.safeLoad(userUBolt);
+    loaded = yaml.safeLoad(userUBolt);
+    result = {};
+    Object.keys(loaded).forEach(function (cmd) {
+      if (!loaded[cmd].folder) {
+        result[cmd] = loaded[cmd];
+      }
+    });
+    return result;
   } else {
     return {};
   }
