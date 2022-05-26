@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const pkginfo = require("pkginfo")(module);
 const yaml = require("js-yaml");
 const homedir = require("os").homedir();
-const git = require("simple-git/promise");
+const git = require("simple-git");
 
 const { execSync } = require("child_process");
 
